@@ -16,8 +16,6 @@
       document.body.className = imgSrc === "/moon.png" ? "moon" : "sun";
     }
   });
-
-  export let target: HTMLElement | null = null;
 </script>
 
 {#key imgSrc}
