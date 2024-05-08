@@ -1,11 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { GET as getSpotifyData } from "./api/spotify";
-import { GET as getNowPlaying } from "./api/now-playing";
 
 const [spotifyResponse, nowPlayingResponse] = await Promise.all([
   getSpotifyData(Astro),
-  getNowPlaying(Astro),
+  fetch(Astro.url + "/api/now-playing"),
 ]);
 
 const spotifyData = await spotifyResponse.json();

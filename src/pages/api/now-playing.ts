@@ -1,8 +1,6 @@
-import type { APIRoute } from "astro";
 import { getNowPlaying } from "../../lib/spotify";
 
-export const GET: APIRoute = async () => {
+export async function GET() {
   const nowPlaying = await getNowPlaying();
-
   return new Response(JSON.stringify(nowPlaying));
-};
+}
