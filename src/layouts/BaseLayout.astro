@@ -4,8 +4,11 @@ import Neko from "../components/Neko.astro"
 import Header from "../components/Header.astro"
 import '../styles/global.css'
 import Grain from '../components/Grain.svelte'
+import { GET } from '../pages/api/githubRepo'
+let response = await GET(Astro)
+const { lastUpdated } = await response.json()
 ---
-<Header/>
+<Header lastUpdated={lastUpdated}/>
 <div class="fixed inset-0 z-[-10]">
   <Grain client:load />
 </div>
