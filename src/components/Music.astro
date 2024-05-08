@@ -16,7 +16,13 @@ import type { Playlist, Song } from "../lib/spotify";
         <>
           <div class="border-box cutout-title" data-title="now playing">
             <div id="current-song-container">
-              <p>Loading...</p>
+              <div class="flex items-center space-x-2">
+                <div class="flex-grow">
+                  <p class="text-sm font-semibold">loading...</p>
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
+                </div>
+              </div>
             </div>
           </div>
           <div class="border-box cutout-title" data-title="playlists">
