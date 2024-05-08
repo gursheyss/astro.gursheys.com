@@ -1,11 +1,10 @@
 ---
 interface Props {
-  currentSong: Song | null;
   playlists: Playlist[] | null;
   topSongs: Song[] | null;
 }
 
-const { currentSong, playlists, topSongs } = Astro.props;
+const { playlists, topSongs } = Astro.props;
 
 import type { Playlist, Song } from "../lib/spotify";
 ---
@@ -13,124 +12,114 @@ import type { Playlist, Song } from "../lib/spotify";
 <div class="border-box cutout-title" data-title="📻 music">
   <div class="content">
     {
-      currentSong === undefined ? (
-        <p>Loading...</p>
-      ) : (
-        currentSong &&
-        playlists &&
-        topSongs && (
-          <>
-            <div class="border-box cutout-title" data-title="now playing">
-              {currentSong.title ? (
-                <div class="flex items-center space-x-2">
-                  <img
-                    src={currentSong.image}
-                    alt={currentSong.title}
-                    class="w-16 h-16 object-cover rounded-sm"
-                  />
-                  <div class="flex-grow">
-                    <a
-                      href={currentSong.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-sm font-semibold"
-                    >
-                      {currentSong.title}
-                    </a>
-                    <button
-                      class="cursor-pointer play-button"
-                      aria-label="Toggle Play"
-                    >
-                      🔇
-                    </button>
-                    <p class="text-gray-500 text-xs">{currentSong.artist}</p>
-                  </div>
-                  <div
-                    class="current-song-preview-url"
-                    data-preview-url={currentSong.previewUrl}
-                  />
-                </div>
-              ) : (
-                <div class="flex items-center space-x-2">
-                  <div class="flex-grow">
-                    <p class="text-sm font-semibold">not playing anything</p>
-                    <p class="text-gray-500 text-xs">
-                      but check out{" "}
-                      <a
-                        href="https://open.spotify.com/user/qat10h1tw0e8pq7rkf3rui3d1?si=c51ff728c6ef47af"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-pink hover:underline"
-                      >
-                        my profile
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              )}
+      playlists && topSongs && (
+        <>
+          <div class="border-box cutout-title" data-title="now playing">
+            <div id="current-song-container">
+              <p>Loading...</p>
             </div>
-            <div class="border-box cutout-title" data-title="playlists">
-              <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2">
-                {playlists.slice(0, 10).map((playlist) => (
-                  <a
-                    href={playlist.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="space-y-2"
-                  >
-                    <div class="flex items-center space-x-2">
-                      <img
-                        src={playlist.image}
-                        alt={playlist.title}
-                        class="w-12 h-12 object-cover rounded-sm"
-                      />
-                      <div class="flex-grow">
-                        <p class="text-sm font-semibold">
-                          {playlist.title.toLowerCase()}
-                        </p>
-                        <p class="text-gray-500 text-xs">
-                          {playlist.count} tracks
-                        </p>
-                      </div>
+          </div>
+          <div class="border-box cutout-title" data-title="playlists">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2">
+              {playlists.slice(0, 10).map((playlist) => (
+                <a
+                  href={playlist.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="space-y-2"
+                >
+                  <div class="flex items-center space-x-2">
+                    <img
+                      src={playlist.image}
+                      alt={playlist.title}
+                      class="w-12 h-12 object-cover rounded-sm"
+                    />
+                    <div class="flex-grow">
+                      <p class="text-sm font-semibold">
+                        {playlist.title.toLowerCase()}
+                      </p>
+                      <p class="text-gray-500 text-xs">
+                        {playlist.count} tracks
+                      </p>
                     </div>
-                  </a>
-                ))}
-              </div>
+                  </div>
+                </a>
+              ))}
             </div>
-            <div class="border-box cutout-title" data-title="top songs">
-              <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2">
-                {topSongs.map((song) => (
-                  <a
-                    href={song.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="space-y-2"
-                  >
-                    <div class="flex">
-                      <img
-                        src={song.image}
-                        alt={song.title}
-                        class="w-12 h-12 object-cover rounded-sm"
-                      />
-                      <div class="ml-2">
-                        <p class="text-sm font-semibold">
-                          {song.title.toLowerCase()}
-                        </p>
-                        <p class="text-gray-500 text-xs">
-                          {song.artist.toLowerCase()}
-                        </p>
-                      </div>
+          </div>
+          <div class="border-box cutout-title" data-title="top songs">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2">
+              {topSongs.map((song) => (
+                <a
+                  href={song.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="space-y-2"
+                >
+                  <div class="flex">
+                    <img
+                      src={song.image}
+                      alt={song.title}
+                      class="w-12 h-12 object-cover rounded-sm"
+                    />
+                    <div class="ml-2">
+                      <p class="text-sm font-semibold">
+                        {song.title.toLowerCase()}
+                      </p>
+                      <p class="text-gray-500 text-xs">
+                        {song.artist.toLowerCase()}
+                      </p>
                     </div>
-                  </a>
-                ))}
-              </div>
+                  </div>
+                </a>
+              ))}
             </div>
-          </>
-        )
+          </div>
+        </>
       )
     }
   </div>
 </div>
+
+<script>
+  const currentSongContainer = document.getElementById(
+    "current-song-container"
+  );
+
+  async function fetchCurrentSong() {
+    const response = await fetch("/api/now-playing");
+    const currentSong = await response.json();
+
+    if (currentSong.title) {
+      currentSongContainer.innerHTML = `
+        <div class="flex items-center space-x-2">
+          <img src="${currentSong.image}" alt="${currentSong.title}" class="w-16 h-16 object-cover rounded-sm" />
+          <div class="flex-grow">
+            <a href="${currentSong.url}" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold">
+              ${currentSong.title}
+            </a>
+            <button class="cursor-pointer play-button" aria-label="Toggle Play">🔇</button>
+            <p class="text-gray-500 text-xs">${currentSong.artist}</p>
+          </div>
+          <div class="current-song-preview-url" data-preview-url="${currentSong.previewUrl}"></div>
+        </div>
+      `;
+    } else {
+      currentSongContainer.innerHTML = `
+        <div class="flex items-center space-x-2">
+          <div class="flex-grow">
+            <p class="text-sm font-semibold">not playing anything</p>
+            <p class="text-gray-500 text-xs">
+              but check out <a href="https://open.spotify.com/user/qat10h1tw0e8pq7rkf3rui3d1?si=c51ff728c6ef47af" target="_blank" rel="noopener noreferrer" class="text-pink hover:underline">my profile</a>
+            </p>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  fetchCurrentSong();
+</script>
 
 <script>
   import { initAudioToggle } from "./audioToggle";
