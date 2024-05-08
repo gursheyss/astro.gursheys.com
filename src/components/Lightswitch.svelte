@@ -37,7 +37,7 @@
   <img
     src={imgSrc}
     alt="moon"
-    class="inline-block h-6 w-6 align-middle wiggle"
+    class="inline-block h-6 w-6 align-middle wiggle pixelated"
     on:click={switchImage}
     in:fly={{ x: 0, y: -10, duration: 500 }}
   />
