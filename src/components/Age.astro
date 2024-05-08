@@ -1,0 +1,23 @@
+<span id="age"></span>
+
+<script>
+  const birthday = new Date(2004, 10, 30);
+
+  const getAge = () => {
+    const now = new Date();
+    const diff = now.getTime() - birthday.getTime();
+    const age = diff / (1000 * 60 * 60 * 24 * 365.25);
+    return age.toFixed(9);
+  };
+
+  const ageElement = document.getElementById("age");
+
+  const updateAge = () => {
+    if (ageElement) {
+      ageElement.textContent = getAge();
+      requestAnimationFrame(updateAge);
+    }
+  };
+
+  updateAge();
+</script>

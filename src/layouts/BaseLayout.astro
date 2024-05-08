@@ -1,15 +1,23 @@
 ---
-import "@fontsource/jetbrains-mono"
-import Neko from "../components/Neko.astro"
-import Header from "../components/Header.astro"
-import '../styles/global.css'
-import Grain from '../components/Grain.svelte'
-import { GET } from '../pages/api/githubRepo'
-let response = await GET(Astro)
-const { lastUpdated } = await response.json()
+import "@fontsource/jetbrains-mono";
+import Neko from "../components/Neko.astro";
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+import Grain from "../components/Grain.svelte";
+import { GET } from "../pages/api/github";
+import Vignette from "../components/Vignette.astro";
+import Sparkles from "../components/Sparkles.astro";
+let response = await GET(Astro);
+const { lastUpdated } = await response.json();
 ---
-<Header lastUpdated={lastUpdated}/>
+
 <div class="fixed inset-0 z-[-10]">
+  <Sparkles />
+  <Vignette />
   <Grain client:load />
 </div>
 <Neko nekoType="rose" />
+<div class="relative z-10">
+  <Header lastUpdated={lastUpdated} />
+  <slot />
+</div>

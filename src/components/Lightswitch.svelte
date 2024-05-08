@@ -18,11 +18,26 @@
   });
 </script>
 
+<style>
+  @keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-6deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(6deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .wiggle:hover {
+    animation: wiggle 0.5s ease-in-out;
+    animation-iteration-count: infinite;
+  }
+</style>
+
 {#key imgSrc}
   <img
     src={imgSrc}
     alt="moon"
-    class="inline-block h-6 w-6 align-middle"
+    class="inline-block h-6 w-6 align-middle wiggle"
     on:click={switchImage}
     in:fly={{ x: 0, y: -10, duration: 500 }}
   />

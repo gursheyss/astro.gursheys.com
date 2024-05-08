@@ -1,18 +1,46 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { GET as getSpotifyData } from "./api/spotify";
+import { GET as getNowPlaying } from "./api/now-playing";
+
+const [spotifyResponse, nowPlayingResponse] = await Promise.all([
+  getSpotifyData(Astro),
+  getNowPlaying(Astro),
+]);
+
+const spotifyData = await spotifyResponse.json();
+const currentSong = await nowPlayingResponse.json();
+
+import Music from "../components/Music.astro";
+import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>gursh</title>
-	</head>
-	<body>
-		<BaseLayout>
-			<h1>Astro</h1>
-		<BaseLayout />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>gursh</title>
+  </head>
+  <body>
+    <BaseLayout>
+      <div
+        class="pt-4 sm:pt-0 flex flex-col lg:flex-row justify-center mx-auto px-8 lg:px-0 max-w-7xl"
+      >
+        <div class="w-full lg:w-2/3">
+          <About />
+          <Projects />
+        </div>
+        <div class="w-full lg:w-1/3">
+          <Music
+            currentSong={currentSong}
+            playlists={spotifyData.playlists}
+            topSongs={spotifyData.topSongs}
+          />
+        </div>
+      </div>
+    </BaseLayout>
+  </body>
 </html>

@@ -1,0 +1,123 @@
+<div class="border-box cutout-title" data-title="👨‍💻 work">
+  <div class="content">
+    here's a couple of things i've worked on
+
+    <div
+      class="border-box cutout-title right-title"
+      data-title="📈 bopstocks"
+      data-right-title="sveltekit, supabase, python"
+    >
+      <div class="content">
+        <ul>
+          <li>
+            »
+            <a
+              href="https://bopstocks.com"
+              target="_blank"
+              class="text-pink hover:underline"
+            >
+              bopstocks
+            </a>
+            is a simulated stock market based on twitch streamer jasontheween's community
+            with over 3,000 users
+          </li>
+          <li>
+            » we used supabase + websockets for realtime updates to stock prices
+          </li>
+          <li>
+            » the pricing algorithm uses a few different factors, such as
+            sentiment analysis with python
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="border-box cutout-title right-title"
+      data-title="💊 meditag"
+      data-right-title="sveltekit, openai, supabase"
+    >
+      <div class="content">
+        <ul>
+          <li>
+            »
+            <a
+              href="https://github.com/gursheyss/MediTag"
+              target="_blank"
+              class="text-pink hover:underline"
+            >
+              meditag
+            </a>
+            is a web app that lets nurses access and interact with patient data
+          </li>
+          <li>
+            » it has an integrated chatbot to cross-check medications given with
+            the patients medical history.
+          </li>
+          <li>» we built it for the patient safety track @ irvinehacks 2024</li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="border-box cutout-title right-title"
+      data-title="📂 zipp"
+      data-right-title="sveltekit, golang, mysql, s3"
+    >
+      <div class="content">
+        <ul>
+          <li>
+            » <a href="/zipp" target="_blank" class="text-pink hover:underline">
+              zipp
+            </a>
+            is an encrypted file sharing service that implements aes-256 and pbkdf2
+            encryption
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="border-box cutout-title right-title"
+      data-title="🎵 austere"
+      data-right-title="golang, docker"
+    >
+      <div class="content">
+        <ul>
+          <li>
+            » <a
+              href="https://github.com/gursheyss/austere"
+              target="_blank"
+              class="text-pink hover:underline"
+            >
+              austere
+            </a>
+            is a web server that's used to save and tag songs
+          </li>
+          <li>
+            » i made it for my home server so i can import music not on
+            streaming services and use them through spotify local files
+          </li>
+          <li>
+            » it originally started as a
+            <a
+              href="/downloadthing"
+              target="_blank"
+              class="text-pink hover:underline"
+            >
+              media downloading service
+            </a>
+            from social media platforms
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @media (max-width: 640px) {
+    .right-title::after {
+      display: none;
+    }
+  }
+</style>

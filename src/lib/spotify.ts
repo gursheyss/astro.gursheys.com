@@ -5,7 +5,7 @@ const SPOTIFY_CLIENT_SECRET = import.meta.env.SPOTIFY_CLIENT_SECRET;
 const SPOTIFY_REFRESH_TOKEN = import.meta.env.SPOTIFY_REFRESH_TOKEN;
 
 const authorization = Buffer.from(
-  `${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`
+  `${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`,
 ).toString("base64");
 const TOKEN_URL = "https://accounts.spotify.com/api/token";
 const BASE_URL = "https://api.spotify.com/v1/me";
@@ -165,14 +165,14 @@ async function getPlaylists(): Promise<Playlist[]> {
   try {
     const params = new URLSearchParams({ limit: "50" }).toString();
     const { items } = await fetchSpotifyAPI<PlaylistsResponse>(
-      `${PLAYLISTS_URL}?${params}`
+      `${PLAYLISTS_URL}?${params}`,
     );
     const playlists = items
       ? items
           .map(getPlaylistData)
           .filter(
             (playlist) =>
-              playlist.public && playlist.owner === "qat10h1tw0e8pq7rkf3rui3d1"
+              playlist.public && playlist.owner === "qat10h1tw0e8pq7rkf3rui3d1",
           )
       : [];
     await redis.set("playlists", JSON.stringify(playlists), {
@@ -197,7 +197,7 @@ async function getTopSongs(): Promise<Song[]> {
       limit: "10",
     }).toString();
     const { items } = await fetchSpotifyAPI<TopTracksResponse>(
-      `${TOP_TRACKS_URL}?${params}`
+      `${TOP_TRACKS_URL}?${params}`,
     );
     const topSongs = items.map(getSongData);
     await redis.set("top_songs", JSON.stringify(topSongs), {

@@ -1,0 +1,42 @@
+---
+const defaultSizes = {
+  top: "200px",
+  bottom: "200px",
+};
+---
+
+<div class="vignette">
+  <div class="vignette-strip top" style={`--top: ${defaultSizes.top};`}></div>
+  <div
+    class="vignette-strip bottom"
+    style={`--bottom: ${defaultSizes.bottom};`}
+  >
+  </div>
+</div>
+
+<style>
+  .vignette {
+    @apply fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-10;
+  }
+
+  .vignette-strip {
+    @apply fixed w-full;
+    background: linear-gradient(
+      rgba(143, 139, 139, 0.1) 0%,
+      transparent 40%,
+      transparent 60%
+    );
+    backdrop-filter: blur(10px);
+  }
+
+  .vignette-strip.top {
+    @apply top-0;
+    height: var(--top);
+  }
+
+  .vignette-strip.bottom {
+    @apply bottom-0;
+    height: var(--bottom);
+    transform: scaleY(-1);
+  }
+</style>

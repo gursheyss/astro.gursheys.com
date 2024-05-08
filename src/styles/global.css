@@ -8,7 +8,9 @@ body {
 }
 
 * {
-  cursor: url("/cursor.svg") 0 0, auto;
+  cursor:
+    url("/cursor.svg") 0 0,
+    auto;
 }
 
 body.moon {
@@ -57,7 +59,7 @@ body.moon .border-box {
 }
 
 body.sun .border-box {
-  border-color: lightgray;
+  border-color: gray;
 }
 
 @keyframes sparkle {
