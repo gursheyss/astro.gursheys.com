@@ -14,11 +14,5 @@ export const GET: APIRoute = async () => {
 
   const maxAge = 3600;
 
-  return new Response(JSON.stringify(spotifyData), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
-      "Cache-Control": `public, max-age=${maxAge}, s-maxage=${maxAge}, stale-while-revalidate`,
-    },
-  });
+  return new Response(JSON.stringify(spotifyData));
 };

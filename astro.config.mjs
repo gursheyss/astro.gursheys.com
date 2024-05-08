@@ -9,6 +9,10 @@ export default defineConfig({
   integrations: [tailwind(), svelte()],
   output: "server",
   adapter: vercel({
+    isr: {
+      expiration: 60 * 60 * 24,
+      exclude: ["/api/now-playing"],
+    },
     webAnalytics: {
       enabled: true,
     },
