@@ -6,6 +6,7 @@ interface Props {
 
 const { playlists, topSongs } = Astro.props;
 
+import { Image } from "astro:assets";
 import type { Playlist, Song } from "../lib/spotify";
 ---
 
@@ -35,10 +36,13 @@ import type { Playlist, Song } from "../lib/spotify";
                   class="space-y-2"
                 >
                   <div class="flex items-center space-x-2">
-                    <img
-                      src={playlist.image}
+                    <Image
+                      src={playlist.image as string}
                       alt={playlist.title}
+                      loading="eager"
                       class="w-12 h-12 object-cover rounded-sm"
+                      width={12}
+                      height={12}
                     />
                     <div class="flex-grow">
                       <p class="text-sm font-semibold">
@@ -63,10 +67,13 @@ import type { Playlist, Song } from "../lib/spotify";
                   class="space-y-2"
                 >
                   <div class="flex">
-                    <img
-                      src={song.image}
+                    <Image
+                      src={song.image as string}
                       alt={song.title}
+                      loading="eager"
                       class="w-12 h-12 object-cover rounded-sm"
+                      width={12}
+                      height={12}
                     />
                     <div class="ml-2">
                       <p class="text-sm font-semibold">
