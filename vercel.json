@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/downloadthing",
+      "destination": "https://austere-production.up.railway.app/",
+      "permanent": true
+    },
+    {
+      "source": "/zipp",
+      "destination": "https://zipp-gursheyss.vercel.app/",
+      "permanent": true
+    }
+  ]
+}
