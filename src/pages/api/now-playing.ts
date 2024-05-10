@@ -1,3 +1,4 @@
+export const prerender = false;
 import { getNowPlaying } from "../../lib/spotify";
 
 export async function GET() {

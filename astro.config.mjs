@@ -7,10 +7,11 @@ import vercel from "@astrojs/vercel/serverless";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), svelte()],
-  output: "server",
+  output: "hybrid",
   adapter: vercel({
     isr: {
-      expiration: 30,
+      expiration: 60 * 60 * 24,
+      exclude: ["/api/now-playing"],
     },
     webAnalytics: {
       enabled: true,
