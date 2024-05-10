@@ -1,0 +1,28 @@
+---
+title: "migrating from sveltekit to astro"
+slug: "migrating-from-sveltekit-to-astro"
+date: 2021-07-08
+---
+
+# Sample Blog Post
+
+This is a sample blog post. It's here to provide an example of how you might structure your markdown files for your Astro blog.
+
+Remember, the frontmatter at the top of the file is used to populate the `data` object in your Astro component. The `title`, `slug`, and `publishedDate` fields correspond to the properties you're accessing in your component.
+
+The rest of the file is the content of your blog post. You can use markdown syntax to format this content.
+
+```jsx {3-8}
+// src/routes/blog/[slug].astro
+function BlogPost({ title, publishedDate, content }) {
+  return (
+    <article>
+      <header>
+        <h1>{title}</h1>
+        <p>{publishedDate}</p>
+      </header>
+      <div>{content}</div>
+    </article>
+  );
+}
+```

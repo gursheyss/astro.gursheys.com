@@ -1,0 +1,27 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+// 1. Get the slug from the incoming server request
+const { slug } = Astro.params;
+if (slug === undefined) {
+  throw new Error("Slug is required");
+}
+// 2. Query for the entry directly using the request slug
+const entry = await getEntry("blog", slug);
+// 3. Redirect if the entry does not exist
+if (entry === undefined) {
+  return Astro.redirect("/404");
+}
+// 4. (Optional) Render the entry to HTML in the template
+const { Content } = await entry.render();
+---
+
+<head>
+  <meta charset="UTF-8" />
+</head>
+
+<BaseLayout>
+  <div class="prose prose-invert mx-auto w-3/4 pt-12">
+    <Content class="w-full" />
+  </div>
+</BaseLayout>

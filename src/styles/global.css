@@ -93,3 +93,8 @@ body.sun .border-box {
   image-rendering: pixelated; /* Chrome and Edge */
   -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
 }
+
+.highlighted {
+  background-color: rgba(200, 200, 255, 0.1);
+  border-left-color: #60a5fa;
+}

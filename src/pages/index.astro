@@ -5,9 +5,12 @@ import { GET as getSpotifyData } from "./api/spotify";
 const spotifyResponse = await getSpotifyData(Astro);
 const spotifyData = await spotifyResponse.json();
 
-import Music from "../components/Music.astro";
-import About from "../components/About.astro";
-import Projects from "../components/Projects.astro";
+import Music from "@components/Music.astro";
+import About from "@components/About.astro";
+import Projects from "@components/Projects.astro";
+
+import { getCollection, getEntry } from "astro:content";
+const blogEntries = await getCollection("blog");
 ---
 
 <html lang="en">
@@ -26,6 +29,20 @@ import Projects from "../components/Projects.astro";
         <div class="w-full lg:w-2/3">
           <About />
           <Projects />
+          <ul>
+            {
+              blogEntries.map((blogPostEntry) => (
+                <li>
+                  <a href={`/blog/${blogPostEntry.slug}`}>
+                    {blogPostEntry.data.title}
+                  </a>
+                  <time datetime={blogPostEntry.data.date.toISOString()}>
+                    {blogPostEntry.data.date.toDateString()}
+                  </time>
+                </li>
+              ))
+            }
+          </ul>
         </div>
         <div class="w-full lg:w-1/3">
           <Music
