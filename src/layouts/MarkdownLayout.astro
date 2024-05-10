@@ -8,7 +8,7 @@ const { frontmatter } = Astro.props;
   </head>
   <body>
     <h1>{frontmatter.title}</h1>
-    <p>Written on: {frontmatter.date}</p>
+    <p>{new Date(frontmatter.date).toLocaleDateString()}</p>
     <slot />
   </body>
 </html>

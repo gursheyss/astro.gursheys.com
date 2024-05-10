@@ -1,3 +1,4 @@
+import theme from "tailwindcss/defaultTheme";
 import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
@@ -11,6 +12,13 @@ export default {
       colors: {
         pink: "rgb(253, 207, 243)",
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: "100ch",
+          },
+        },
+      }),
     },
   },
   plugins: [require("@tailwindcss/typography")],

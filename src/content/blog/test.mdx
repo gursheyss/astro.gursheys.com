@@ -1,12 +1,53 @@
 ---
 layout: "@layouts/MarkdownLayout.astro"
-title: "astro with vercel and isr"
+title: "moving to astro with vercel and isr"
 slug: "astro-with-vercel-and-isr"
-date: 2021-07-08
+date: 2024-05-10
 ---
 
-i recently migrated this site from sveltekit to astro for
+i recently migrated this site from sveltekit to astro for a couple of reasons:
 
-- **faster load times** (but looking back i probably could've done the same with sveltekit)
-- **better markdown support** (i know sveltekit has mdsvex but honestly i couldn't get it to work)
-- and i also just wanted to try something new
+- i wanted better markdown support for this blog post you're reading right now.
+  (i tried using mdsvex with sveltekit, but i couldn't quite get it to work the way i wanted.)
+- i was looking to improve load times by taking advantage of astro's static html generation.
+
+originally, i had the sveltekit version of this site deployed on vercel. however, i started to
+notice some issues with cold starts, which were particularly noticeable since this site has
+low traffic. to address this, i moved my hosting over to railway.
+while it was a bit slower than vercel when it came to fetching data from the server,
+it eliminated the cold starts since it wasn't running in a serverless environment.
+
+now that i've switched to astro, i was curious if i could get the best of both worlds.
+i wanted to host my site on vercel again, but without having to deal with those long cold
+starts. that's when i discovered vercel's incremental static regeneration (isr) feature.
+
+my home page is mostly static, but i have a music component showing my now playing
+songs, playlists, and top tracks. with sveltekit, it was all server-rendered, so the
+music info updated with each request. my top tracks and playlists probably only
+change every few days, but my now playing data needs to be almost live.
+
+wanted to use isr, but it works for the whole page, not just components. tried
+setting the isr expiration to 1 day and excluded the now playing api path. nope –
+the whole page was cached, including the now playing data.
+
+got rid of isr and tried astro's hybrid rendering to server-render just the music
+component. didn't work. made the component totally client-side, but it wasn't as
+fast as i wanted.
+
+then i realized with isr, i could set the expiration really low, like 30 seconds.
+when the cache expires, it serves a stale cached response and gets the new data in
+the background. so everyone gets a cached response, but it automatically updates
+every 30 seconds.
+
+```js {4-8} showLineNumbers
+// astro.config.mjs
+export default defineConfig({
+  integrations: [tailwind(), svelte()],
+  output: "server",
+  adapter: vercel({
+    isr: {
+      expiration: 30,
+    },
+  }),
+});
+```
