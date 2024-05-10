@@ -6,6 +6,7 @@ interface Props {
 }
 const { currentSong, playlists, topSongs } = Astro.props;
 import type { Playlist, Song } from "../lib/spotify";
+import NowPlaying from "./NowPlaying.astro";
 ---
 
 <div class="border-box cutout-title" data-title="📻 music">
@@ -13,55 +14,7 @@ import type { Playlist, Song } from "../lib/spotify";
     {
       currentSong && playlists && topSongs && (
         <>
-          <div class="border-box cutout-title" data-title="now playing">
-            {currentSong.title ? (
-              <div class="flex items-center space-x-2">
-                <img
-                  src={currentSong.image}
-                  alt={currentSong.title}
-                  class="w-16 h-16 object-cover rounded-sm"
-                />
-                <div class="flex-grow">
-                  <a
-                    href={currentSong.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-sm font-semibold"
-                  >
-                    {currentSong.title}
-                  </a>
-                  <button
-                    class="cursor-pointer play-button"
-                    aria-label="Toggle Play"
-                  >
-                    🔇
-                  </button>
-                  <p class="text-gray-500 text-xs">{currentSong.artist}</p>
-                </div>
-                <div
-                  class="current-song-preview-url"
-                  data-preview-url={currentSong.previewUrl}
-                />
-              </div>
-            ) : (
-              <div class="flex items-center space-x-2">
-                <div class="flex-grow">
-                  <p class="text-sm font-semibold">not playing anything</p>
-                  <p class="text-gray-500 text-xs">
-                    but check out{" "}
-                    <a
-                      href="https://open.spotify.com/user/qat10h1tw0e8pq7rkf3rui3d1?si=c51ff728c6ef47af"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-pink hover:underline"
-                    >
-                      my profile
-                    </a>
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
+          <NowPlaying currentSong={currentSong} />
           <div class="border-box cutout-title" data-title="playlists">
             <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2">
               {playlists.slice(0, 10).map((playlist) => (
