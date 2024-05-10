@@ -7,10 +7,12 @@ import Grain from "../components/Grain.svelte";
 import { GET } from "../pages/api/github";
 import Vignette from "../components/Vignette.astro";
 import Sparkles from "../components/Sparkles.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 let response = await GET(Astro);
 const { lastUpdated } = await response.json();
 ---
 
+<SpeedInsights />
 <div class="fixed inset-0 z-[-10]">
   <Sparkles />
   <Vignette />
