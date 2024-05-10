@@ -10,8 +10,7 @@ export default defineConfig({
   output: "server",
   adapter: vercel({
     isr: {
-      expiration: 60 * 60 * 24,
-      exclude: ["/api/now-playing"],
+      expiration: 30,
     },
     webAnalytics: {
       enabled: true,

@@ -1,13 +1,15 @@
 import type { APIRoute } from "astro";
-import { getPlaylists, getTopSongs } from "../../lib/spotify";
+import { getNowPlaying, getPlaylists, getTopSongs } from "../../lib/spotify";
 
 export const GET: APIRoute = async () => {
-  const [playlists, topSongs] = await Promise.all([
+  const [nowPlaying, playlists, topSongs] = await Promise.all([
+    getNowPlaying(),
     getPlaylists(),
     getTopSongs(),
   ]);
 
   const spotifyData = {
+    nowPlaying,
     playlists,
     topSongs,
   };
