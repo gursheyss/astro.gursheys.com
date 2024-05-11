@@ -7,7 +7,7 @@ export function initAudioToggle() {
   function togglePlay() {
     if (audio.paused) {
       const currentSongPreviewUrl = document.querySelector(
-        ".current-song-preview-url",
+        ".current-song-preview-url"
       );
       if (currentSongPreviewUrl) {
         audio.src =
