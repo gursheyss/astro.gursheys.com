@@ -93,3 +93,9 @@ body.sun .border-box {
   image-rendering: pixelated; /* Chrome and Edge */
   -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
 }
+
+img[name^="imageNeko"] {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
