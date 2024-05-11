@@ -123,3 +123,7 @@ code[data-line-numbers][data-line-numbers-max-digits="3"]
   > [data-line]::before {
   width: 3rem;
 }
+
+code {
+  @apply font-geist;
+}
