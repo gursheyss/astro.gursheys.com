@@ -1,4 +1,3 @@
-import theme from "tailwindcss/defaultTheme";
 import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
@@ -8,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         mono: ["Jetbrains Mono", ...defaultTheme.fontFamily.mono],
+        geist: ["Geist Mono", ...defaultTheme.fontFamily.mono],
       },
       colors: {
         pink: "rgb(253, 207, 243)",
