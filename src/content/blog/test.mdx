@@ -13,26 +13,38 @@ i recently migrated this site from sveltekit to astro for a couple of reasons:
 
 originally, i had the sveltekit version of this site deployed on vercel. however, i started to
 notice some issues with cold starts, which were particularly noticeable since this site has
-low traffic. to address this, i moved my hosting over to railway.
-while it was a bit slower than vercel when it came to fetching data from the server,
-it eliminated the cold starts since it wasn't running in a serverless environment.
+low traffic.
 
-now that i've switched to astro, i was curious if i could get the best of both worlds.
-i wanted to host my site on vercel again, but without having to deal with those long cold
-starts. that's when i discovered vercel's incremental static regeneration (isr) feature.
+to address this, i moved my hosting over to railway.
+while it was a bit slower than vercel when it came to fetching data from the server,
+it got rid of the cold starts since it wasn't running in a serverless environment.
+
+now that i've switched to astro, i was curious if i could get both the performance benefits
+of static html but still have some dynamic content.
 
 my home page is mostly static, but i have a music component showing my now playing
 songs, playlists, and top tracks. with sveltekit, it was all server-rendered, so the
-music info updated with each request. my top tracks and playlists probably only
+music info updated with each request.
+
+my top tracks and playlists probably only
 change every few days, but my now playing data needs to be almost live.
 
-wanted to use isr, but it works for the whole page, not just components. tried
-setting the isr expiration to 1 day and excluded the now playing api path. nope –
+i found out about [vercel's isr](https://vercel.com/docs/incremental-static-regeneration)
+and thought it would be perfect for this use case. i could cache the whole page
+but have the now playing data update every few seconds.
+
+i first thought of setting the isr expiration to 1 day and excluded the now playing api path. nope –
 the whole page was cached, including the now playing data.
 
-got rid of isr and tried astro's hybrid rendering to server-render just the music
-component. didn't work. made the component totally client-side, but it wasn't as
-fast as i wanted.
+i got rid of isr and tried astro's hybrid rendering to server-render just the music
+component, but that didn't work either since that's also on the page level
+
+to comprimise, i made the component totally client-side, but it wasn't as
+fast as i wanted since it had to fetch the data after the page loaded,
+and since i'm using spotify's api, the speed was inconsistent.
+
+there isn't much documentation on how to use astro with vercel and isr, or isr in
+general with frameworks other than next.js
 
 then i realized with isr, i could set the expiration really low, like 30 seconds.
 when the cache expires, it serves a stale cached response and gets the new data in
