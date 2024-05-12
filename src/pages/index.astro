@@ -2,8 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { GET as getSpotifyData } from "./api/spotify";
 
-const spotifyResponse = await getSpotifyData(Astro);
-const spotifyData = await spotifyResponse.json();
+let spotifyData;
+try {
+  const spotifyResponse = await getSpotifyData(Astro);
+  spotifyData = await spotifyResponse.json();
+} catch (error) {
+  console.error(error);
+  spotifyData = { nowPlaying: null, playlists: null, topSongs: null };
+}
 
 import Music from "../components/Music.astro";
 import About from "../components/About.astro";

@@ -8,8 +8,16 @@ import { GET } from "../pages/api/github";
 import Vignette from "../components/Vignette.astro";
 import Sparkles from "../components/Sparkles.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
-let response = await GET(Astro);
-const { lastUpdated } = await response.json();
+
+let lastUpdated;
+try {
+  let response = await GET(Astro);
+  const data = await response.json();
+  lastUpdated = data.lastUpdated;
+} catch (error) {
+  console.error(error);
+  lastUpdated = "Error fetching update time";
+}
 ---
 
 <SpeedInsights />
