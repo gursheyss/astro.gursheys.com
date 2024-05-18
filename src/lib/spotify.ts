@@ -5,7 +5,7 @@ const SPOTIFY_CLIENT_SECRET = import.meta.env.SPOTIFY_CLIENT_SECRET;
 const SPOTIFY_REFRESH_TOKEN = import.meta.env.SPOTIFY_REFRESH_TOKEN;
 
 const authorization = Buffer.from(
-  `${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`,
+  `${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`
 ).toString("base64");
 const TOKEN_URL = "https://accounts.spotify.com/api/token";
 const BASE_URL = "https://api.spotify.com/v1/me";
@@ -127,9 +127,6 @@ function getPlaylistData(item: SpotifyPlaylist): Playlist {
 }
 
 async function getNowPlaying(): Promise<CurrentSong> {
-  const storedSong = await redis.get<Song>("song");
-  if (storedSong) return storedSong;
-
   type CurrentlyPlayingResponse = {
     is_playing: boolean;
     item: SpotifySong;
@@ -140,16 +137,10 @@ async function getNowPlaying(): Promise<CurrentSong> {
       await fetchSpotifyAPI<CurrentlyPlayingResponse>(CURRENTLY_PLAYING_URL);
 
     if (!item) {
-      await redis.set("song", JSON.stringify({ isPlaying: false }), {
-        ex: 60,
-      });
       return { isPlaying: false };
     }
 
     const song: Song = { isPlaying, ...getSongData(item) };
-    await redis.set("song", JSON.stringify(song), {
-      ex: 60,
-    });
     return song;
   } catch (error) {
     return { isPlaying: false };
@@ -157,27 +148,21 @@ async function getNowPlaying(): Promise<CurrentSong> {
 }
 
 async function getPlaylists(): Promise<Playlist[]> {
-  const storedPlaylists = await redis.get<Playlist[]>("playlists");
-  if (storedPlaylists) return storedPlaylists;
-
   type PlaylistsResponse = { items: SpotifyPlaylist[] };
 
   try {
     const params = new URLSearchParams({ limit: "50" }).toString();
     const { items } = await fetchSpotifyAPI<PlaylistsResponse>(
-      `${PLAYLISTS_URL}?${params}`,
+      `${PLAYLISTS_URL}?${params}`
     );
     const playlists = items
       ? items
           .map(getPlaylistData)
           .filter(
             (playlist) =>
-              playlist.public && playlist.owner === "qat10h1tw0e8pq7rkf3rui3d1",
+              playlist.public && playlist.owner === "qat10h1tw0e8pq7rkf3rui3d1"
           )
       : [];
-    await redis.set("playlists", JSON.stringify(playlists), {
-      ex: 24 * 60 * 60,
-    });
     return playlists;
   } catch (error) {
     console.error(`Error fetching playlists: ${error}`);
@@ -186,9 +171,6 @@ async function getPlaylists(): Promise<Playlist[]> {
 }
 
 async function getTopSongs(): Promise<Song[]> {
-  const storedTopSongs = await redis.get<Song[]>("top_songs");
-  if (storedTopSongs) return storedTopSongs;
-
   type TopTracksResponse = { items: SpotifySong[] };
 
   try {
@@ -197,12 +179,9 @@ async function getTopSongs(): Promise<Song[]> {
       limit: "10",
     }).toString();
     const { items } = await fetchSpotifyAPI<TopTracksResponse>(
-      `${TOP_TRACKS_URL}?${params}`,
+      `${TOP_TRACKS_URL}?${params}`
     );
     const topSongs = items.map(getSongData);
-    await redis.set("top_songs", JSON.stringify(topSongs), {
-      ex: 24 * 60 * 60,
-    });
     return topSongs;
   } catch (error) {
     console.error(`Error fetching top songs: ${error}`);
