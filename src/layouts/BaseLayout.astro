@@ -1,5 +1,6 @@
 ---
 import "@fontsource/jetbrains-mono";
+import "@fontsource/geist-mono";
 import Neko from "../components/Neko.astro";
 import Header from "../components/Header.astro";
 import "../styles/global.css";
@@ -10,6 +11,7 @@ import Sparkles from "../components/Sparkles.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 
 let lastUpdated;
+
 try {
   let response = await GET(Astro);
   const data = await response.json();
