@@ -16,7 +16,7 @@ import NowPlaying from "./NowPlaying.astro";
         <>
           <NowPlaying currentSong={currentSong} />
           <div class="border-box cutout-title" data-title="playlists">
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2">
+            <div class="grid gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               {playlists.slice(0, 10).map((playlist) => (
                 <a
                   href={playlist.url}
@@ -28,13 +28,13 @@ import NowPlaying from "./NowPlaying.astro";
                     <img
                       src={playlist.image}
                       alt={playlist.title}
-                      class="w-12 h-12 object-cover rounded-sm"
+                      class="h-12 w-12 rounded-sm object-cover"
                     />
                     <div class="flex-grow">
                       <p class="text-sm font-semibold">
                         {playlist.title.toLowerCase()}
                       </p>
-                      <p class="text-gray-500 text-xs">
+                      <p class="text-xs text-gray-500">
                         {playlist.count} tracks
                       </p>
                     </div>
@@ -44,7 +44,7 @@ import NowPlaying from "./NowPlaying.astro";
             </div>
           </div>
           <div class="border-box cutout-title" data-title="top songs">
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2">
+            <div class="grid gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               {topSongs.map((song) => (
                 <a
                   href={song.url}
@@ -56,13 +56,13 @@ import NowPlaying from "./NowPlaying.astro";
                     <img
                       src={song.image}
                       alt={song.title}
-                      class="w-12 h-12 object-cover rounded-sm"
+                      class="h-12 w-12 rounded-sm object-cover"
                     />
                     <div class="ml-2">
                       <p class="text-sm font-semibold">
                         {song.title.toLowerCase()}
                       </p>
-                      <p class="text-gray-500 text-xs">
+                      <p class="text-xs text-gray-500">
                         {song.artist.toLowerCase()}
                       </p>
                     </div>

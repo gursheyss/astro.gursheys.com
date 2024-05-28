@@ -13,7 +13,7 @@ import type { Song } from "../lib/spotify";
         <img
           src={currentSong.image}
           alt={currentSong.title}
-          class="w-16 h-16 object-cover rounded-sm"
+          class="h-16 w-16 rounded-sm object-cover"
         />
         <div class="flex-grow">
           <a
@@ -24,10 +24,10 @@ import type { Song } from "../lib/spotify";
           >
             {currentSong.title}
           </a>
-          <button class="cursor-pointer play-button" aria-label="Toggle Play">
+          <button class="play-button cursor-pointer" aria-label="Toggle Play">
             🔇
           </button>
-          <p class="text-gray-500 text-xs">{currentSong.artist}</p>
+          <p class="text-xs text-gray-500">{currentSong.artist}</p>
         </div>
         <div
           class="current-song-preview-url"
@@ -38,7 +38,7 @@ import type { Song } from "../lib/spotify";
       <div class="flex items-center space-x-2">
         <div class="flex-grow">
           <p class="text-sm font-semibold">not playing anything</p>
-          <p class="text-gray-500 text-xs">
+          <p class="text-xs text-gray-500">
             but check out{" "}
             <a
               href="https://open.spotify.com/user/qat10h1tw0e8pq7rkf3rui3d1?si=c51ff728c6ef47af"
