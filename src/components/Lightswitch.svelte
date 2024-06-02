@@ -34,13 +34,13 @@
       transform: rotate(0deg);
     }
     25% {
-      transform: rotate(-6deg);
+      transform: rotate(-10deg);
     }
     50% {
       transform: rotate(0deg);
     }
     75% {
-      transform: rotate(6deg);
+      transform: rotate(10deg);
     }
     100% {
       transform: rotate(0deg);
@@ -48,7 +48,7 @@
   }
 
   .wiggle:hover {
-    animation: wiggle 0.5s ease-in-out;
+    animation: wiggle 0.8s ease-in-out;
     animation-iteration-count: infinite;
   }
 </style>
