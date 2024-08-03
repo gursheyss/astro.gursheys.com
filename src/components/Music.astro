@@ -2,6 +2,7 @@
 import type { Playlist, Song } from "../lib/spotify";
 import { GET as getSpotifyData } from "../pages/api/spotify";
 import NowPlaying from "./NowPlaying.astro";
+import NowPlayingSkeleton from "./NowPlayingSkeleton.astro";
 const response = await getSpotifyData(Astro);
 const { playlists, topSongs } = await response.json();
 ---
@@ -11,7 +12,9 @@ const { playlists, topSongs } = await response.json();
     {
       playlists && topSongs && (
         <>
-          <NowPlaying server:defer />
+          <NowPlaying server:defer>
+            <NowPlayingSkeleton slot="fallback" />
+          </NowPlaying>
           <div class="border-box cutout-title" data-title="playlists">
             <div class="grid gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               {playlists.slice(0, 10).map((playlist: Playlist) => (
