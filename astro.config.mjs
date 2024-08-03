@@ -5,6 +5,7 @@ import vercel from "@astrojs/vercel/serverless";
 import mdx from "@astrojs/mdx";
 import expressiveCode, { ExpressiveCodeTheme } from "astro-expressive-code";
 import syntaxTheme from "./syntax-theme.json";
+import react from "@astrojs/react";
 
 const myTheme = ExpressiveCodeTheme.fromJSONString(JSON.stringify(syntaxTheme));
 
@@ -22,7 +23,7 @@ export default defineConfig({
     }),
     mdx(),
   ],
-  output: "hybrid",
+  output: "server",
   adapter: vercel({
     webAnalytics: {
       enabled: true,
