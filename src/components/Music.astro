@@ -1,5 +1,5 @@
 ---
-import { Playlist, Song } from "../lib/spotify";
+import type { Playlist, Song } from "../lib/spotify";
 import { GET as getSpotifyData } from "../pages/api/spotify";
 import NowPlaying from "./NowPlaying.astro";
 const response = await getSpotifyData(Astro);
