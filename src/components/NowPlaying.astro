@@ -1,9 +1,7 @@
 ---
-interface Props {
-  currentSong: Song | null;
-}
-const { currentSong } = Astro.props;
-import type { Song } from "../lib/spotify";
+import { GET as getSpotifyData } from "../pages/api/now-playing";
+const response = await getSpotifyData(Astro);
+const { currentSong } = await response.json();
 ---
 
 <div class="border-box cutout-title" data-title="now playing">
