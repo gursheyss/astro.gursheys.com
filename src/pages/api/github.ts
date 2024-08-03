@@ -12,7 +12,7 @@ export const GET: APIRoute = async () => {
       headers: {
         Authorization: `token ${GITHUB_PERSONAL_ACCESS_TOKEN}`,
       },
-    }
+    },
   );
 
   const data = await response.json();
@@ -22,6 +22,6 @@ export const GET: APIRoute = async () => {
   return new Response(
     JSON.stringify({
       lastUpdated: timeDifference,
-    })
+    }),
   );
 };

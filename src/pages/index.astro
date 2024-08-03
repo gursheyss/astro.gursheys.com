@@ -1,14 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { GET as getSpotifyData } from "./api/spotify";
-
-const spotifyResponse = await getSpotifyData(Astro);
-const spotifyData = await spotifyResponse.json();
 
 import Music from "@components/Music.astro";
 import About from "@components/About.astro";
 import Projects from "@components/Projects.astro";
 import Blog from "@components/Blog.astro";
+import Work from "../components/Work.astro";
+import Links from "../components/Links.astro";
 ---
 
 <html lang="en">
@@ -22,18 +20,17 @@ import Blog from "@components/Blog.astro";
   <body>
     <BaseLayout>
       <div
-        class="pt-4 sm:pt-0 flex flex-col lg:flex-row justify-center mx-auto px-8 lg:px-0 max-w-7xl"
+        class="mx-auto flex max-w-7xl flex-col justify-center px-2 pt-4 sm:pt-0 lg:flex-row lg:px-0"
       >
         <div class="w-full lg:w-2/3">
           <About />
+          <Work />
           <Projects />
           <Blog />
         </div>
         <div class="w-full lg:w-1/3">
-          <Music
-            playlists={spotifyData.playlists}
-            topSongs={spotifyData.topSongs}
-          />
+          <Links />
+          <Music />
         </div>
       </div>
     </BaseLayout>

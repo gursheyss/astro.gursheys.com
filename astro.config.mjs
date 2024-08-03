@@ -13,6 +13,7 @@ export default defineConfig({
   integrations: [
     tailwind(),
     svelte(),
+    react(),
     expressiveCode({
       themes: [myTheme],
       styleOverrides: {
@@ -21,14 +22,13 @@ export default defineConfig({
     }),
     mdx(),
   ],
-  output: "server",
+  output: "hybrid",
   adapter: vercel({
-    isr: {
-      expiration: 60 * 60 * 24,
-      exclude: ["/api/now-playing"],
-    },
     webAnalytics: {
       enabled: true,
     },
   }),
+  experimental: {
+    serverIslands: true,
+  },
 });
