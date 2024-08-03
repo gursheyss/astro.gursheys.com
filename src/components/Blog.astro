@@ -1,0 +1,27 @@
+---
+import { formatDistanceToNow } from "date-fns";
+import { getCollection } from "astro:content";
+const blogEntries = await getCollection("blog");
+---
+
+<div class="border-box cutout-title" data-title="📝 blog">
+  <div class="content">
+    <ul>
+      {
+        blogEntries.map((entry) => (
+          <li class="flex justify-between">
+            <a href={`/blog/${entry.slug}`} target="_blank">
+              »{" "}
+              <span class="text-pink hover:underline">{entry.data.title}</span>
+            </a>
+            <span>
+              {formatDistanceToNow(new Date(entry.data.date), {
+                addSuffix: true,
+              })}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

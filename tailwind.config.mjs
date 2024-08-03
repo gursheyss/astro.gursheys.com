@@ -7,12 +7,19 @@ export default {
     extend: {
       fontFamily: {
         mono: ["Jetbrains Mono", ...defaultTheme.fontFamily.mono],
-        geistMono: ["Geist Mono", ...defaultTheme.fontFamily.mono],
+        geist: ["Geist Mono", ...defaultTheme.fontFamily.mono],
       },
       colors: {
         pink: "rgb(253, 207, 243)",
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: "100ch",
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
