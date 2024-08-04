@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { Playlist, Song } from "../lib/spotify";
 import { GET as getSpotifyData } from "../pages/api/spotify";
 import NowPlaying from "./NowPlaying.astro";
@@ -25,10 +26,13 @@ const { playlists, topSongs } = await response.json();
                   class="space-y-2"
                 >
                   <div class="flex items-center space-x-2">
-                    <img
-                      src={playlist.image}
+                    <Image
+                      src={playlist.image as string}
                       alt={playlist.title}
                       class="h-12 w-12 rounded-sm object-cover"
+                      width={12}
+                      height={12}
+                      loading={"eager"}
                     />
                     <div class="flex-grow">
                       <p class="text-sm font-semibold">
@@ -53,10 +57,13 @@ const { playlists, topSongs } = await response.json();
                   class="space-y-2"
                 >
                   <div class="flex">
-                    <img
-                      src={song.image}
+                    <Image
+                      src={song.image as string}
                       alt={song.title}
                       class="h-12 w-12 rounded-sm object-cover"
+                      width={12}
+                      height={12}
+                      loading={"eager"}
                     />
                     <div class="ml-2">
                       <p class="text-sm font-semibold">
