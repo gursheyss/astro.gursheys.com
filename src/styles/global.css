@@ -127,3 +127,7 @@ code[data-line-numbers][data-line-numbers-max-digits="3"]
 code {
   @apply font-geist;
 }
+
+img[name="imageNeko0"] {
+  @apply pixelated;
+}
