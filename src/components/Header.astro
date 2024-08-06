@@ -1,7 +1,9 @@
 ---
 import { Lightswitch } from "./Lightswitch";
 import { Image } from "astro:assets";
-const { lastUpdated } = Astro.props;
+import { GET as getLastUpdated } from "../pages/api/github";
+const response = await getLastUpdated(Astro);
+const { lastUpdated } = await response.json();
 ---
 
 <div class="flex items-center justify-between">
