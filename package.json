@@ -16,10 +16,10 @@
     "@astrojs/svelte": "^5.7.0",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vercel": "7.8.1",
-    "@fontsource/geist-mono": "^5.0.3",
-    "@fontsource/jetbrains-mono": "^5.0.20",
-    "@types/node": "^20.14.14",
-    "@types/react": "^18.3.3",
+    "@fontsource/geist-mono": "^5.1.0",
+    "@fontsource/jetbrains-mono": "^5.1.0",
+    "@types/node": "^20.16.5",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vercel/kv": "^1.0.1",
     "@vercel/speed-insights": "^1.0.12",
@@ -27,7 +27,7 @@
     "astro-expressive-code": "^0.35.6",
     "autoprefixer": "^10.4.20",
     "date-fns": "^3.6.0",
-    "framer-motion": "^11.3.21",
+    "framer-motion": "^11.5.4",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.5.14",
@@ -36,11 +36,11 @@
     "rehype": "^13.0.1",
     "rehype-pretty-code": "^0.13.2",
     "remark-smartypants": "^3.0.2",
-    "svelte": "^5.0.0-next.208",
-    "tailwindcss": "^3.4.7",
-    "typescript": "^5.5.4"
+    "svelte": "^5.0.0-next.246",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.6.2"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.13"
+    "@tailwindcss/typography": "^0.5.15"
   }
 }
