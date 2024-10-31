@@ -24,7 +24,7 @@ export default defineConfig({
     mdx(),
   ],
   image: {
-    domains: ["image-cdn-ak.spotifycdn.com"],
+    domains: ["image-cdn-ak.spotifycdn.com", "image-cdn-fa.spotifycdn.com"],
   },
   output: "hybrid",
   adapter: vercel({
