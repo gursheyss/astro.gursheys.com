@@ -28,6 +28,8 @@ export default defineConfig({
     webAnalytics: {
       enabled: true,
     },
+    imageService: true,
+    edgeMiddleware: true,
   }),
   experimental: {
     serverIslands: true,
