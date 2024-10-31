@@ -28,6 +28,7 @@ export default defineConfig({
       "image-cdn-ak.spotifycdn.com",
       "image-cdn-fa.spotifycdn.com",
       "i.scdn.co",
+      "mosaic.scdn.co",
     ],
   },
   output: "hybrid",
