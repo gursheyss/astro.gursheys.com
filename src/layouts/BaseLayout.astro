@@ -22,14 +22,14 @@ try {
 }
 ---
 
-<SpeedInsights />
 <div class="fixed inset-0 z-[-10]">
   <Sparkles />
   <Vignette />
-  <Grain client:load />
+  <Grain client:idle />
 </div>
 <Neko nekoType="rose" />
 <div class="relative z-10 text-lg">
   <Header lastUpdated={lastUpdated} />
   <slot />
 </div>
+<SpeedInsights />

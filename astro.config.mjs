@@ -42,6 +42,9 @@ export default defineConfig({
     },
     imageService: true,
     edgeMiddleware: true,
+    prerender: {
+      entries: ["/"],
+    },
   }),
   experimental: {
     serverIslands: true,
