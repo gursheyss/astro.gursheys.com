@@ -24,7 +24,16 @@ export default defineConfig({
     mdx(),
   ],
   image: {
-    domains: ["*.spotifycdn.com", "*.scdn.co"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.spotifycdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.scdn.co",
+      },
+    ],
   },
   output: "hybrid",
   adapter: vercel({
